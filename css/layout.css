@@ -1,0 +1,128 @@
+/* layout.css
+   Page-level structure: header, the chat page's three stacked regions
+   (topics strip / message list / composer), and the metrics page's panels.
+*/
+
+.site-header {
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.site-header__inner {
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  padding: var(--space-3) var(--space-4);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.site-header__title {
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.site-header__nav {
+  display: flex;
+  gap: var(--space-4);
+}
+
+.site-header__nav a {
+  text-decoration: none;
+  color: var(--color-text-muted);
+  padding: var(--space-1) 0;
+  border-bottom: 2px solid transparent;
+}
+
+.site-header__nav a[aria-current="page"] {
+  color: var(--color-text);
+  border-bottom-color: var(--color-accent);
+}
+
+.chat-page {
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  height: calc(100vh - 60px);
+  min-height: 480px;
+}
+
+.topics-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  padding: var(--space-2) 0;
+  min-height: 2.25rem;
+}
+
+.message-list {
+  flex: 1;
+  overflow-y: auto;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.composer {
+  display: flex;
+  gap: var(--space-2);
+  align-items: flex-end;
+}
+
+.composer__input {
+  flex: 1;
+  resize: vertical;
+  padding: var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  min-height: 2.75rem;
+}
+
+.metrics-page {
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.panel {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+}
+
+.panel__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.panel__hint {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 480px) {
+  .chat-page {
+    padding: var(--space-2);
+  }
+
+  .composer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

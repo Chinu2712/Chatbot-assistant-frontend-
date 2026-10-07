@@ -1,0 +1,9 @@
+# Binary files
+*.mp4 binary
+*.mov binary
+*.avi binary
+*.mkv binary
+*.webm binary
+
+# Git LFS tracking (optional - for very large files)
+# *.mp4 filter=lfs diff=lfs merge=lfs -text

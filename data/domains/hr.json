@@ -1,0 +1,88 @@
+{
+  "id": "hr",
+  "displayName": "HR & Admin",
+  "colorToken": "amber",
+  "clarifyQuestion": "Is this about leave, records or ID/documents, or something else?",
+  "handoffContact": { "team": "Student & Staff Records", "email": "records@campus.edu", "phone": "x2210" },
+  "keywords": [
+    { "term": "sick leave", "weight": 0.7 },
+    { "term": "casual leave", "weight": 0.7 },
+    { "term": "maternity leave", "weight": 0.7 },
+    { "term": "id card", "weight": 0.7 },
+    { "term": "transcript", "weight": 0.7 },
+    { "term": "address change", "weight": 0.7 },
+    { "term": "change my address", "weight": 0.7 },
+    { "term": "home address", "weight": 0.6 },
+    { "term": "payslip", "weight": 0.4 },
+    { "term": "payroll", "weight": 0.4 },
+    { "term": "bonafide certificate", "weight": 0.7 },
+    { "term": "enrollment certificate", "weight": 0.4 },
+    { "term": "emergency contact", "weight": 0.4 }
+  ],
+  "entries": [
+    {
+      "id": "hr-sick-leave",
+      "question": "How do I apply for sick leave?",
+      "answer": "Submit a leave request through the staff/student portal under \"Leave\", attaching a medical note for absences over 2 days. Approval usually takes 1 working day.",
+      "sources": [
+        { "title": "Leave application process", "url": "https://intranet.university.edu/hr/leave-application", "updated": "2025-02-01" }
+      ]
+    },
+    {
+      "id": "hr-id-card",
+      "question": "How do I get a replacement student ID card?",
+      "answer": "Report the lost card through the portal, pay the replacement fee shown there, then collect the new card from the Records desk within 3 working days.",
+      "sources": [
+        { "title": "Replacing your ID card", "url": "https://intranet.university.edu/hr/id-card-replacement", "updated": "2025-01-15" }
+      ]
+    },
+    {
+      "id": "hr-transcript",
+      "question": "How do I order an official transcript?",
+      "answer": "Requests go through the Records portal. Standard turnaround is 5 working days; express requests (2 days) carry an extra fee.",
+      "sources": [
+        { "title": "Ordering transcripts", "url": "https://intranet.university.edu/hr/transcripts", "updated": "2024-12-10" }
+      ]
+    },
+    {
+      "id": "hr-address-change",
+      "question": "How do I update my registered home address?",
+      "answer": "Update your address under \"Personal Details\" in the portal. Changes reflect on mailed documents within one billing cycle.",
+      "sources": [
+        { "title": "Updating personal details", "url": "https://intranet.university.edu/hr/personal-details", "updated": "2024-11-28" }
+      ]
+    },
+    {
+      "id": "hr-maternity-leave",
+      "question": "How do I apply for maternity or paternity leave?",
+      "answer": "Staff should submit the leave form with expected date and supporting documents to HR at least 4 weeks in advance where possible.",
+      "sources": [
+        { "title": "Parental leave policy", "url": "https://intranet.university.edu/hr/parental-leave", "updated": "2024-09-05" }
+      ]
+    },
+    {
+      "id": "hr-payslip",
+      "question": "Where can I check my payslip or payroll query?",
+      "answer": "Payslips are posted monthly under \"Payroll\" in the staff portal. For discrepancies, log a query with your employee ID and the pay period.",
+      "sources": [
+        { "title": "Payroll and payslips", "url": "https://intranet.university.edu/hr/payroll", "updated": "2025-02-20" }
+      ]
+    },
+    {
+      "id": "hr-bonafide",
+      "question": "How do I get a bonafide or enrollment certificate?",
+      "answer": "Request it under \"Certificates\" in the portal, stating the purpose. Certificates are issued within 2 working days and emailed as a signed PDF.",
+      "sources": [
+        { "title": "Requesting certificates", "url": "https://intranet.university.edu/hr/certificates", "updated": "2024-10-14" }
+      ]
+    },
+    {
+      "id": "hr-emergency-contact",
+      "question": "How do I update my emergency contact details?",
+      "answer": "Emergency contacts are edited under \"Personal Details > Emergency Contacts\" and take effect immediately.",
+      "sources": [
+        { "title": "Emergency contact details", "url": "https://intranet.university.edu/hr/emergency-contacts", "updated": "2024-07-19" }
+      ]
+    }
+  ]
+}

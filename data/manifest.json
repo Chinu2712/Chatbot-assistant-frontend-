@@ -1,0 +1,8 @@
+{
+  "domains": [
+    { "id": "it", "file": "domains/it.json" },
+    { "id": "hr", "file": "domains/hr.json" },
+    { "id": "fees", "file": "domains/fees.json" },
+    { "id": "facilities", "file": "domains/facilities.json" }
+  ]
+}

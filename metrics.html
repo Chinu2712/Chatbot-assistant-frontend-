@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Campus Assistant &mdash; Metrics</title>
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="site-header__inner">
+    <span class="site-header__title">Campus Assistant</span>
+    <nav class="site-header__nav" aria-label="Pages">
+      <a href="index.html">Chat</a>
+      <a href="metrics.html" aria-current="page">Metrics</a>
+    </nav>
+  </div>
+</header>
+
+<main class="metrics-page">
+  <section class="panel">
+    <div class="panel__header">
+      <h2>Routing accuracy</h2>
+      <button id="run-eval" class="btn btn--primary" type="button">Run evaluation</button>
+    </div>
+    <p class="panel__hint">Runs every question in <code>data/eval-set.json</code> through the active router and compares its top pick to the expected domain.</p>
+    <div id="eval-summary" class="stat-row" aria-live="polite"></div>
+    <div id="eval-output" aria-live="polite"></div>
+  </section>
+
+  <section class="panel">
+    <h2>Session metrics</h2>
+    <p class="panel__hint">Computed from this browser's session log (in-memory + localStorage), via <code>store.js</code>.</p>
+    <div id="session-summary" class="stat-row"></div>
+    <button id="clear-log" class="btn btn--ghost" type="button">Clear session log</button>
+  </section>
+</main>
+
+<script type="module">
+import { route } from './js/router/index.js';
+import { EVAL_SET_URL, MANIFEST_URL } from './js/config.js';
+import * as store from './js/store.js';
+import { el, clearChildren, qs } from './js/util/dom.js';
+
+const evalSummary = qs('#eval-summary');
+const evalOutput = qs('#eval-output');
+const sessionSummary = qs('#session-summary');
+
+async function loadDomains() {
+  const manifestRes = await fetch(MANIFEST_URL, { cache: 'no-store' });
+  const manifest = await manifestRes.json();
+  const domains = await Promise.all(manifest.domains.map(async ({ file }) => {
+    const res = await fetch(`data/${file}`, { cache: 'no-store' });
+    return res.json();
+  }));
+  return domains;
+}
+
+function stat(label, value) {
+  return el('div', { class: 'stat' }, [
+    el('span', { class: 'stat__value' }, value),
+    el('span', { class: 'stat__label' }, label)
+  ]);
+}
+
+function renderSessionMetrics() {
+  const m = store.computeMetrics();
+  clearChildren(sessionSummary);
+  sessionSummary.append(
+    stat('questions asked', String(m.totalQuestions)),
+    stat('resolution rate', `${(m.resolutionRate * 100).toFixed(0)}%`),
+    stat('clarification rate', `${(m.clarificationRate * 100).toFixed(0)}%`),
+    stat('handoff rate', `${(m.handoffRate * 100).toFixed(0)}%`),
+    stat('avg confidence', `${(m.avgConfidence * 100).toFixed(0)}%`)
+  );
+}
+
+async function runEvaluation() {
+  const [domains, evalRes] = await Promise.all([loadDomains(), fetch(EVAL_SET_URL, { cache: 'no-store' })]);
+  const evalSet = await evalRes.json();
+  const domainIds = domains.map(d => d.id);
+  const domainMap = Object.fromEntries(domains.map(d => [d.id, d]));
+
+  const confusion = {};
+  for (const expected of domainIds) {
+    confusion[expected] = {};
+    for (const predicted of domainIds) confusion[expected][predicted] = 0;
+  }
+
+  const misses = [];
+  let correct = 0;
+
+  for (const item of evalSet) {
+    const result = await route(item.text, {}, domains);
+    confusion[item.expectedDomain][result.domain] += 1;
+    if (result.domain === item.expectedDomain) {
+      correct += 1;
+    } else {
+      misses.push({ ...item, predicted: result.domain, confidence: result.confidence });
+    }
+  }
+
+  const accuracy = evalSet.length ? correct / evalSet.length : 0;
+
+  clearChildren(evalSummary);
+  evalSummary.append(
+    stat('accuracy', `${(accuracy * 100).toFixed(0)}%`),
+    stat('questions', String(evalSet.length)),
+    stat('misses', String(misses.length))
+  );
+
+  clearChildren(evalOutput);
+
+  const table = el('table', { class: 'confusion' }, [
+    el('caption', {}, 'Confusion table (rows = expected, columns = predicted)'),
+    el('thead', {}, el('tr', {}, [
+      el('th', {}, ''),
+      ...domainIds.map(id => el('th', {}, domainMap[id].displayName))
+    ])),
+    el('tbody', {}, domainIds.map(expected =>
+      el('tr', {}, [
+        el('th', { scope: 'row' }, domainMap[expected].displayName),
+        ...domainIds.map(predicted => {
+          const count = confusion[expected][predicted];
+          const isDiagonal = expected === predicted;
+          return el('td', { class: isDiagonal ? 'confusion__hit' : count > 0 ? 'confusion__miss' : '' }, String(count));
+        })
+      ])
+    ))
+  ]);
+  evalOutput.append(table);
+
+  if (misses.length) {
+    evalOutput.append(el('h3', { class: 'misses__title' }, 'Misses'));
+    evalOutput.append(el('ul', { class: 'misses' }, misses.map(m =>
+      el('li', {}, [
+        el('span', { class: 'misses__text' }, `"${m.text}"`),
+        el('span', { class: 'misses__detail' },
+          ` expected ${domainMap[m.expectedDomain].displayName}, got ${domainMap[m.predicted].displayName} (${(m.confidence * 100).toFixed(0)}%)`)
+      ])
+    )));
+  }
+}
+
+qs('#run-eval').addEventListener('click', () => {
+  runEvaluation().catch(err => {
+    clearChildren(evalOutput);
+    evalOutput.append(el('div', { class: 'load-error', role: 'alert' }, `Evaluation failed: ${err.message}`));
+  });
+});
+
+qs('#clear-log').addEventListener('click', () => {
+  store.clearEvents();
+  renderSessionMetrics();
+});
+
+renderSessionMetrics();
+</script>
+</body>
+</html>

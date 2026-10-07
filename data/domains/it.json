@@ -1,0 +1,90 @@
+{
+  "id": "it",
+  "displayName": "IT Helpdesk",
+  "colorToken": "teal",
+  "clarifyQuestion": "Is this about your account/network access, or something else on campus?",
+  "handoffContact": { "team": "IT Service Desk", "email": "ithelp@campus.edu", "phone": "x4357" },
+  "keywords": [
+    { "term": "wifi", "weight": 0.7 },
+    { "term": "wi-fi", "weight": 0.7 },
+    { "term": "vpn", "weight": 0.7 },
+    { "term": "password reset", "weight": 0.7 },
+    { "term": "reset my password", "weight": 0.7 },
+    { "term": "account locked", "weight": 0.7 },
+    { "term": "lab booking", "weight": 0.7 },
+    { "term": "computer lab", "weight": 0.4 },
+    { "term": "can't log in", "weight": 0.4 },
+    { "term": "cannot log in", "weight": 0.4 },
+    { "term": "software install", "weight": 0.4 },
+    { "term": "printer", "weight": 0.4 },
+    { "term": "network", "weight": 0.2 },
+    { "term": "laptop", "weight": 0.2 },
+    { "term": "email", "weight": 0.2 }
+  ],
+  "entries": [
+    {
+      "id": "it-wifi",
+      "question": "How do I connect to campus wifi?",
+      "answer": "Join the \"Campus-Secure\" network with your student ID as username and your portal password. If the login page doesn't appear, forget the network on your device and reconnect. Most connection failures are fixed by a reboot of the device's network adapter.",
+      "sources": [
+        { "title": "Wifi setup guide", "url": "https://intranet.university.edu/it/wifi-setup", "updated": "2025-02-11" }
+      ]
+    },
+    {
+      "id": "it-password-reset",
+      "question": "How do I reset my student account password?",
+      "answer": "Go to the self-service portal and choose \"Forgot password\". You'll need your student ID and the recovery email on file. Resets take effect within 10 minutes across wifi, email and the lab login.",
+      "sources": [
+        { "title": "Self-service password reset", "url": "https://intranet.university.edu/it/password-reset", "updated": "2025-01-20" }
+      ]
+    },
+    {
+      "id": "it-vpn",
+      "question": "How do I set up VPN for off-campus access?",
+      "answer": "Install the campus VPN client from the software portal, then sign in with your student credentials. VPN is required to reach the library databases and lab file shares from off campus.",
+      "sources": [
+        { "title": "VPN client setup", "url": "https://intranet.university.edu/it/vpn-setup", "updated": "2024-11-05" }
+      ]
+    },
+    {
+      "id": "it-lab-booking",
+      "question": "How do I book a seat in the computer lab?",
+      "answer": "Lab seats are booked through the facilities calendar under \"Computer Labs\". Bookings are held for 15 minutes past the start time before release to walk-ins.",
+      "sources": [
+        { "title": "Computer lab booking calendar", "url": "https://intranet.university.edu/it/lab-booking", "updated": "2025-03-02" }
+      ]
+    },
+    {
+      "id": "it-account-locked",
+      "question": "My account is locked after too many failed logins, what now?",
+      "answer": "Accounts auto-unlock after 30 minutes, or you can unlock immediately via the self-service portal by verifying your recovery email.",
+      "sources": [
+        { "title": "Account lockout policy", "url": "https://intranet.university.edu/it/account-lockout", "updated": "2024-09-18" }
+      ]
+    },
+    {
+      "id": "it-software",
+      "question": "How do I install licensed software like MATLAB or Office?",
+      "answer": "Licensed titles are available from the software portal under your student login. Installers are pre-activated, no separate license key is needed.",
+      "sources": [
+        { "title": "Software portal catalogue", "url": "https://intranet.university.edu/it/software-portal", "updated": "2025-01-09" }
+      ]
+    },
+    {
+      "id": "it-printer",
+      "question": "The library printer won't connect from my laptop.",
+      "answer": "Install the campus print driver, then queue jobs to \"Library-Print\" and release them at any release station with your ID card.",
+      "sources": [
+        { "title": "Printing from personal devices", "url": "https://intranet.university.edu/it/printing", "updated": "2024-10-30" }
+      ]
+    },
+    {
+      "id": "it-email",
+      "question": "I'm not receiving emails in my student inbox.",
+      "answer": "Check your quota first, then check the junk folder rules under settings. If mail is still missing after 24 hours, log a ticket with the sender's address included.",
+      "sources": [
+        { "title": "Student email troubleshooting", "url": "https://intranet.university.edu/it/email-issues", "updated": "2024-08-22" }
+      ]
+    }
+  ]
+}

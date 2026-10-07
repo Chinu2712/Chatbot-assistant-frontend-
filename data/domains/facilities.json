@@ -1,0 +1,91 @@
+{
+  "id": "facilities",
+  "displayName": "Facilities",
+  "colorToken": "slate",
+  "clarifyQuestion": "Is this about a maintenance issue, room/parking access, or lost property?",
+  "handoffContact": { "team": "Facilities & Estates", "email": "facilities@campus.edu", "phone": "x5590" },
+  "keywords": [
+    { "term": "maintenance ticket", "weight": 0.7 },
+    { "term": "room access", "weight": 0.7 },
+    { "term": "key card", "weight": 0.4 },
+    { "term": "parking permit", "weight": 0.7 },
+    { "term": "parking", "weight": 0.4 },
+    { "term": "lost property", "weight": 0.7 },
+    { "term": "lost and found", "weight": 0.7 },
+    { "term": "lost", "weight": 0.3 },
+    { "term": "elevator", "weight": 0.4 },
+    { "term": "air conditioning", "weight": 0.4 },
+    { "term": "leak", "weight": 0.4 },
+    { "term": "furniture repair", "weight": 0.4 },
+    { "term": "book a room", "weight": 0.4 },
+    { "term": "common room", "weight": 0.5 },
+    { "term": "cleaning", "weight": 0.2 },
+    { "term": "broken", "weight": 0.2 }
+  ],
+  "entries": [
+    {
+      "id": "fac-maintenance",
+      "question": "How do I report a maintenance issue like a leak or electrical fault?",
+      "answer": "Log a maintenance ticket through the facilities portal with the building, room number and a photo if possible. Urgent electrical/water issues are triaged within 4 hours.",
+      "sources": [
+        { "title": "Reporting a maintenance issue", "url": "https://intranet.university.edu/facilities/maintenance-ticket", "updated": "2025-02-05" }
+      ]
+    },
+    {
+      "id": "fac-room-access",
+      "question": "How do I get my room or building access card activated?",
+      "answer": "Access is activated automatically after hostel check-in. If your key card doesn't work, log a ticket under \"Access Issues\" with your room number.",
+      "sources": [
+        { "title": "Room and building access", "url": "https://intranet.university.edu/facilities/room-access", "updated": "2024-12-19" }
+      ]
+    },
+    {
+      "id": "fac-parking",
+      "question": "How do I apply for a parking permit?",
+      "answer": "Apply for a permit under \"Parking\" on the facilities portal with your vehicle registration. Permits are allocated by lot based on availability.",
+      "sources": [
+        { "title": "Campus parking permits", "url": "https://intranet.university.edu/facilities/parking-permits", "updated": "2025-01-08" }
+      ]
+    },
+    {
+      "id": "fac-lost-property",
+      "question": "I lost something on campus, where do I check?",
+      "answer": "Report and search lost property under \"Lost & Found\" on the facilities portal. Unclaimed items are held for 60 days before donation.",
+      "sources": [
+        { "title": "Lost and found", "url": "https://intranet.university.edu/facilities/lost-and-found", "updated": "2024-11-22" }
+      ]
+    },
+    {
+      "id": "fac-furniture",
+      "question": "Furniture in my hostel room is broken, who do I contact?",
+      "answer": "Log a furniture repair ticket through the facilities portal; standard repairs are scheduled within 5 working days.",
+      "sources": [
+        { "title": "Furniture repair requests", "url": "https://intranet.university.edu/facilities/furniture-repair", "updated": "2024-10-07" }
+      ]
+    },
+    {
+      "id": "fac-room-booking",
+      "question": "How do I book a common room or event space?",
+      "answer": "Common rooms and event spaces are booked through the facilities calendar, at least 48 hours in advance for events over 20 people.",
+      "sources": [
+        { "title": "Booking shared spaces", "url": "https://intranet.university.edu/facilities/room-booking", "updated": "2025-02-27" }
+      ]
+    },
+    {
+      "id": "fac-elevator",
+      "question": "The elevator in my building is broken, how do I report it?",
+      "answer": "Elevator faults are logged as urgent maintenance tickets and are prioritised for same-day inspection.",
+      "sources": [
+        { "title": "Reporting elevator faults", "url": "https://intranet.university.edu/facilities/elevator-faults", "updated": "2024-08-15" }
+      ]
+    },
+    {
+      "id": "fac-cleaning",
+      "question": "How do I request extra cleaning for a shared space?",
+      "answer": "Extra cleaning requests for shared kitchens or common rooms can be logged under \"Cleaning Requests\" on the facilities portal.",
+      "sources": [
+        { "title": "Requesting extra cleaning", "url": "https://intranet.university.edu/facilities/cleaning-requests", "updated": "2024-07-30" }
+      ]
+    }
+  ]
+}

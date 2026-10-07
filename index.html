@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Campus Assistant</title>
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+<a class="skip-link" href="#message-input">Skip to message input</a>
+<header class="site-header">
+  <div class="site-header__inner">
+    <span class="site-header__title">Campus Assistant</span>
+    <nav class="site-header__nav" aria-label="Pages">
+      <a href="index.html" aria-current="page">Chat</a>
+      <a href="metrics.html">Metrics</a>
+    </nav>
+  </div>
+</header>
+
+<main class="chat-page">
+  <div id="topics-strip" class="topics-strip" aria-label="Topics used in this chat"></div>
+
+  <div id="message-list" class="message-list" role="log" aria-live="polite" aria-label="Conversation"></div>
+
+  <form id="composer" class="composer">
+    <label for="message-input" class="sr-only">Type your question</label>
+    <textarea
+      id="message-input"
+      class="composer__input"
+      rows="2"
+      placeholder="Ask about wifi, leave, fees, parking..."
+      disabled
+    ></textarea>
+    <button type="submit" class="btn btn--primary composer__send">Send</button>
+  </form>
+</main>
+
+<script type="module">
+import { initSecretFeature } from './js/secret.js';
+window.addEventListener('load', initSecretFeature);
+</script>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

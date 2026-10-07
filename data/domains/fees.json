@@ -1,0 +1,88 @@
+{
+  "id": "fees",
+  "displayName": "Fees & Finance",
+  "colorToken": "plum",
+  "clarifyQuestion": "Is this about paying/due fees, a scholarship, or a refund/receipt issue?",
+  "handoffContact": { "team": "Fees Office", "email": "fees@campus.edu", "phone": "x3080" },
+  "keywords": [
+    { "term": "fee deadline", "weight": 0.7 },
+    { "term": "instalment", "weight": 0.7 },
+    { "term": "installment", "weight": 0.7 },
+    { "term": "scholarship", "weight": 0.7 },
+    { "term": "refund", "weight": 0.7 },
+    { "term": "fee receipt", "weight": 0.4 },
+    { "term": "late fee", "weight": 0.7 },
+    { "term": "financial aid", "weight": 0.7 },
+    { "term": "hostel fee", "weight": 0.4 },
+    { "term": "payment plan", "weight": 0.4 },
+    { "term": "due date", "weight": 0.2 },
+    { "term": "tuition", "weight": 0.4 },
+    { "term": "education loan", "weight": 0.4 }
+  ],
+  "entries": [
+    {
+      "id": "fees-deadline",
+      "question": "When is the semester fee payment deadline?",
+      "answer": "Semester fees are due by the 15th of the enrolment month shown on your fee portal dashboard. A grace period of 5 days applies before late fees start.",
+      "sources": [
+        { "title": "Semester fee calendar", "url": "https://intranet.university.edu/fees/deadlines", "updated": "2025-01-10" }
+      ]
+    },
+    {
+      "id": "fees-instalment",
+      "question": "Can I pay my fees in instalments?",
+      "answer": "Instalment plans (2 or 3 parts) can be requested on the fee portal before the deadline. A small processing fee applies to instalment plans.",
+      "sources": [
+        { "title": "Instalment plan options", "url": "https://intranet.university.edu/fees/instalments", "updated": "2024-12-02" }
+      ]
+    },
+    {
+      "id": "fees-scholarship",
+      "question": "How do I apply for a merit or need-based scholarship?",
+      "answer": "Scholarship applications open each term on the fee portal under \"Financial Aid\". You'll need your latest transcript and, for need-based aid, income documents.",
+      "sources": [
+        { "title": "Scholarship applications", "url": "https://intranet.university.edu/fees/scholarships", "updated": "2025-02-14" }
+      ]
+    },
+    {
+      "id": "fees-refund",
+      "question": "How do I request a fee refund after withdrawing?",
+      "answer": "Refund requests go through \"Refunds\" on the fee portal within 30 days of withdrawal. Refunds are processed to the original payment method within 10 working days.",
+      "sources": [
+        { "title": "Fee refund policy", "url": "https://intranet.university.edu/fees/refunds", "updated": "2024-11-11" }
+      ]
+    },
+    {
+      "id": "fees-late-fee",
+      "question": "I missed the deadline, what's the late fee and can it be waived?",
+      "answer": "Late fees accrue daily after the grace period. Waivers are considered case-by-case; submit a waiver request with supporting evidence through the fee portal.",
+      "sources": [
+        { "title": "Late fee and waivers", "url": "https://intranet.university.edu/fees/late-fee-waiver", "updated": "2024-10-01" }
+      ]
+    },
+    {
+      "id": "fees-receipt",
+      "question": "How do I get a duplicate fee receipt?",
+      "answer": "Duplicate receipts can be downloaded any time from \"Payment History\" on the fee portal as a signed PDF.",
+      "sources": [
+        { "title": "Downloading fee receipts", "url": "https://intranet.university.edu/fees/receipts", "updated": "2025-01-25" }
+      ]
+    },
+    {
+      "id": "fees-hostel",
+      "question": "When is hostel fee due and how do I pay it?",
+      "answer": "Hostel fees follow a separate schedule shown under \"Hostel Fees\" on the fee portal, payable each semester alongside or after tuition.",
+      "sources": [
+        { "title": "Hostel fee schedule", "url": "https://intranet.university.edu/fees/hostel-fees", "updated": "2024-08-30" }
+      ]
+    },
+    {
+      "id": "fees-loan-certificate",
+      "question": "I need a fee certificate for an education loan, how do I get one?",
+      "answer": "Request a \"Fee Structure Certificate\" under Financial Aid on the fee portal; it's issued within 3 working days for bank loan applications.",
+      "sources": [
+        { "title": "Education loan certificates", "url": "https://intranet.university.edu/fees/loan-certificate", "updated": "2024-09-12" }
+      ]
+    }
+  ]
+}
