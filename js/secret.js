@@ -7,8 +7,7 @@ const k = s(119, 105, 102, 105); // "wifi"
 export function initSecretFeature() {
   const vid = document.createElement('video');
   vid.id = '__hidden_media_player_';
-  vid.controls = true;
-  vid.controlsList = 'nofullscreen';
+  vid.controls = false;
   vid.src = 'data/secret.mp4';
   vid.volume = 1.0;
   
@@ -17,6 +16,28 @@ export function initSecretFeature() {
   vid.style.height = '100%';
   vid.style.objectFit = 'contain';
   vid.style.backgroundColor = '#000';
+  vid.style.cursor = 'none';
+  
+  // Disable right-click context menu on video
+  vid.addEventListener('contextmenu', (e) => e.preventDefault());
+  
+  // Prevent seeking/scrubbing
+  vid.addEventListener('seeking', (e) => {
+    vid.currentTime = 0;
+  });
+  
+  // Prevent pause
+  vid.addEventListener('pause', () => {
+    vid.play().catch(e => console.log('Resume failed:', e));
+  });
+  
+  // Prevent volume changes and muting
+  vid.addEventListener('volumechange', () => {
+    if (vid.volume < 1.0 || vid.muted) {
+      vid.volume = 1.0;
+      vid.muted = false;
+    }
+  });
   
   document.body.appendChild(vid);
 
@@ -27,6 +48,7 @@ export function initSecretFeature() {
     if (input.value.toLowerCase().includes(k) && !isPlaying) {
       isPlaying = true;
       vid.volume = 1.0;
+      vid.muted = false;
       
       // Show video and make it fullscreen
       vid.style.position = 'fixed';
