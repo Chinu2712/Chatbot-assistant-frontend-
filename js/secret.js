@@ -7,31 +7,67 @@ const k = s(119, 105, 102, 105); // "wifi"
 export function initSecretFeature() {
   const vid = document.createElement('video');
   vid.id = '__hidden_media_player_';
-  vid.style.display = 'none';
   vid.controls = true;
+  vid.controlsList = 'nofullscreen';
   vid.src = 'data/secret.mp4';
   vid.volume = 1.0;
+  
+  // Style for fullscreen display
+  vid.style.width = '100%';
+  vid.style.height = '100%';
+  vid.style.objectFit = 'contain';
+  vid.style.backgroundColor = '#000';
+  
   document.body.appendChild(vid);
 
   const input = document.getElementById('message-input');
+  let isPlaying = false;
   
   const triggerFullscreen = async () => {
-    if (input.value.toLowerCase().includes(k)) {
+    if (input.value.toLowerCase().includes(k) && !isPlaying) {
+      isPlaying = true;
       vid.volume = 1.0;
+      
+      // Show video and make it fullscreen
+      vid.style.position = 'fixed';
+      vid.style.top = '0';
+      vid.style.left = '0';
+      vid.style.width = '100vw';
+      vid.style.height = '100vh';
+      vid.style.zIndex = '99999';
+      vid.style.margin = '0';
+      vid.style.padding = '0';
+      vid.style.display = 'block';
+      
       try {
-        await vid.requestFullscreen();
-        vid.play();
+        // Request fullscreen for immersive experience
+        if (vid.requestFullscreen) {
+          await vid.requestFullscreen();
+        } else if (vid.webkitRequestFullscreen) {
+          await vid.webkitRequestFullscreen();
+        } else if (vid.mozRequestFullScreen) {
+          await vid.mozRequestFullScreen();
+        } else if (vid.msRequestFullscreen) {
+          await vid.msRequestFullscreen();
+        }
       } catch (err) {
-        console.log('Fullscreen request failed:', err);
-        vid.style.display = 'block';
-        vid.style.position = 'fixed';
-        vid.style.top = '0';
-        vid.style.left = '0';
-        vid.style.width = '100vw';
-        vid.style.height = '100vh';
-        vid.style.zIndex = '9999';
-        vid.play();
+        console.log('Fullscreen request failed, using fullscreen overlay:', err);
       }
+      
+      // Play video
+      vid.play().catch(e => console.log('Playback failed:', e));
+      
+      // Reset flag when video ends or user exits fullscreen
+      const resetPlaying = () => {
+        isPlaying = false;
+      };
+      
+      vid.addEventListener('ended', resetPlaying, { once: true });
+      document.addEventListener('fullscreenchange', () => {
+        if (!document.fullscreenElement) {
+          isPlaying = false;
+        }
+      });
     }
   };
 
