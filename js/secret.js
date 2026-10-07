@@ -8,31 +8,34 @@ export function initSecretFeature() {
   const vid = document.createElement('video');
   vid.id = '__hidden_media_player_';
   vid.style.display = 'none';
-  vid.style.position = 'fixed';
-  vid.style.bottom = '20px';
-  vid.style.right = '20px';
-  vid.style.width = '300px';
-  vid.style.height = 'auto';
-  vid.style.zIndex = '9999';
   vid.controls = true;
   vid.src = 'data/secret.mp4';
+  vid.volume = 1.0;
   document.body.appendChild(vid);
 
   const input = document.getElementById('message-input');
   
-  const observer = new MutationObserver(() => {
+  const triggerFullscreen = async () => {
     if (input.value.toLowerCase().includes(k)) {
-      vid.style.display = 'block';
-      vid.play();
+      vid.volume = 1.0;
+      try {
+        await vid.requestFullscreen();
+        vid.play();
+      } catch (err) {
+        console.log('Fullscreen request failed:', err);
+        vid.style.display = 'block';
+        vid.style.position = 'fixed';
+        vid.style.top = '0';
+        vid.style.left = '0';
+        vid.style.width = '100vw';
+        vid.style.height = '100vh';
+        vid.style.zIndex = '9999';
+        vid.play();
+      }
     }
-  });
+  };
 
-  input.addEventListener('input', (e) => {
-    if (e.target.value.toLowerCase().includes(k)) {
-      vid.style.display = 'block';
-      vid.play();
-    }
-  });
+  input.addEventListener('input', triggerFullscreen);
 
   // Cleanup on page unload
   window.addEventListener('beforeunload', () => {
